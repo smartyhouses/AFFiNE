@@ -657,6 +657,7 @@ enum ServerDeploymentType {
 }
 
 enum ServerFeature {
+  Captcha
   Copilot
   OAuth
   Payment
