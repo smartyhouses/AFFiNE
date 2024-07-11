@@ -120,6 +120,9 @@
     {
       "path": "./packages/common/infra"
     },
+    {
+      "path": "./packages/common/workspace-storage"
+    },
     // Tools
     {
       "path": "./tools/cli"

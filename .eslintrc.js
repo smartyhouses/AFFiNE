@@ -51,7 +51,7 @@ const allPackages = [
   'packages/common/debug',
   'packages/common/env',
   'packages/common/infra',
-  'packages/common/theme',
+  'packages/common/workspace-storage',
   'tools/cli',
 ];
 
