@@ -15,13 +15,14 @@ import {
   Config,
   EarlyAccessRequired,
   EmailTokenNotFound,
+  Guard,
   InternalServerError,
   InvalidEmailToken,
   SignUpForbidden,
   Throttle,
   URLHelper,
+  UseBasicGuard,
 } from '../../fundamentals';
-import { Captcha } from '../../plugins/captcha/guard';
 import { UserService } from '../user';
 import { validators } from '../utils/validators';
 import { CurrentUser } from './current-user';
@@ -51,7 +52,8 @@ export class AuthController {
   ) {}
 
   @Public()
-  @Captcha()
+  @UseBasicGuard()
+  @Guard('captcha')
   @Post('/sign-in')
   @Header('content-type', 'application/json')
   async signIn(

@@ -1,13 +1,14 @@
 import { AuthModule } from '../../core/auth';
 import { ServerFeature } from '../../core/config';
 import { Plugin } from '../registry';
+import { CaptchaGuardProvider } from './guard';
 import { CaptchaController } from './resolver';
 import { CaptchaService } from './service';
 
 @Plugin({
   name: 'captcha',
   imports: [AuthModule],
-  providers: [CaptchaService],
+  providers: [CaptchaService, CaptchaGuardProvider],
   controllers: [CaptchaController],
   contributesTo: ServerFeature.Captcha,
   requires: ['plugins.captcha.turnstile.secret'],

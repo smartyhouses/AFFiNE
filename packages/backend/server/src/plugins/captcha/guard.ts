@@ -3,18 +3,21 @@ import type {
   ExecutionContext,
   OnModuleInit,
 } from '@nestjs/common';
-import { Injectable, UseGuards } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 
-import { getRequestResponseFromContext } from '../../fundamentals';
-import { GuardProvider } from '../../fundamentals/guard/provider';
+import {
+  getRequestResponseFromContext,
+  GuardProvider,
+} from '../../fundamentals';
 import { CaptchaService } from './service';
 
 @Injectable()
-export class CaptchaGuard
+export class CaptchaGuardProvider
   extends GuardProvider
   implements CanActivate, OnModuleInit
 {
+  private readonly logger = new Logger(CaptchaGuardProvider.name);
   private captcha?: CaptchaService;
 
   constructor(private readonly ref: ModuleRef) {
@@ -25,6 +28,7 @@ export class CaptchaGuard
     super.onModuleInit();
     try {
       this.captcha = this.ref.get(CaptchaService, { strict: false });
+      this.logger.log('Captcha guard is enabled');
     } catch {
       // ignore
     }
@@ -47,21 +51,3 @@ export class CaptchaGuard
     return true;
   }
 }
-
-/**
- * This guard is used to protect routes/queries/mutations that require a user to be check browser env.
- * It will check if the user has passed the captcha challenge.
- *
- * @example
- *
- * ```typescript
- * \@Captcha()
- * \@Query(() => UserType)
- * protected() {
- *   return true;
- * }
- * ```
- */
-export const Captcha = () => {
-  return UseGuards(CaptchaGuard);
-};
