@@ -32,14 +32,16 @@ export class BasicGuard implements CanActivate {
 }
 
 /**
- * This guard is used to protect routes/queries/mutations that require a user to be logged in.
+ * This guard is used to protect routes/queries/mutations that use a registered guard
  *
- * The `@CurrentUser()` parameter decorator used in a `Auth` guarded queries would always give us the user because the `Auth` guard will
- * fast throw if user is not logged in.
+ * add `@UseBasicGuard()` to register the guard for a route/query/mutation,
+ * then add `@Guard('guard-name')` to specify the guard to use
  *
  * @example
  *
  * ```typescript
+ * \@UseBasicGuard()
+ * \@Guard('captcha') // use captcha guard
  * \@Auth()
  * \@Query(() => UserType)
  * user(@CurrentUser() user: CurrentUser) {
