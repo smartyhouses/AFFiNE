@@ -90,7 +90,7 @@ export class AuthService extends Service {
     searchParams.set('token', verifyToken);
     const redirect = environment.isDesktop
       ? this.buildRedirectUri('/open-app/signin-redirect')
-      : (redirectUri ?? location.href);
+      : redirectUri ?? location.href;
     searchParams.set('redirect_uri', redirect.toString());
 
     const res = await this.fetchService.fetch(
@@ -128,8 +128,16 @@ export class AuthService extends Service {
     return;
   }
 
-  async signInPassword(credential: { email: string; password: string }) {
+  async signInPassword(credential: {
+    email: string;
+    password: string;
+    verifyToken: string;
+    challenge?: string;
+  }) {
     const searchParams = new URLSearchParams();
+    if (credential.challenge)
+      searchParams.set('challenge', credential.challenge);
+    searchParams.set('token', credential.verifyToken);
     const redirectUri = new URL(location.href);
     if (environment.isDesktop) {
       redirectUri.pathname = this.buildRedirectUri('/open-app/signin-redirect');

@@ -32,13 +32,15 @@ export const SignInWithPassword: FC<AuthPanelProps> = ({
   const [sendingEmail, setSendingEmail] = useState(false);
 
   const onSignIn = useAsyncCallback(async () => {
-    if (isLoading) return;
+    if (isLoading || !verifyToken) return;
     setIsLoading(true);
 
     try {
       await authService.signInPassword({
         email,
         password,
+        verifyToken,
+        challenge,
       });
       onSignedIn?.();
     } catch (err) {
@@ -47,7 +49,15 @@ export const SignInWithPassword: FC<AuthPanelProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, authService, email, password, onSignedIn]);
+  }, [
+    isLoading,
+    authService,
+    email,
+    password,
+    verifyToken,
+    challenge,
+    onSignedIn,
+  ]);
 
   const sendMagicLink = useAsyncCallback(async () => {
     if (sendingEmail) return;
