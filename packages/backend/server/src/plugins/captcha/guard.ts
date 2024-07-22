@@ -7,20 +7,31 @@ import { Injectable, UseGuards } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 
 import { getRequestResponseFromContext } from '../../fundamentals';
+import { GuardProvider } from '../../fundamentals/guard/provider';
 import { CaptchaService } from './service';
 
 @Injectable()
-export class CaptchaGuard implements CanActivate, OnModuleInit {
+export class CaptchaGuard
+  extends GuardProvider
+  implements CanActivate, OnModuleInit
+{
   private captcha?: CaptchaService;
 
-  constructor(private readonly ref: ModuleRef) {}
+  constructor(private readonly ref: ModuleRef) {
+    super();
+  }
 
-  onModuleInit() {
+  override onModuleInit() {
+    super.onModuleInit();
     try {
       this.captcha = this.ref.get(CaptchaService, { strict: false });
     } catch {
       // ignore
     }
+  }
+
+  override get name() {
+    return 'captcha';
   }
 
   async canActivate(context: ExecutionContext) {

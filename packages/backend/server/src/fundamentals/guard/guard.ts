@@ -2,24 +2,18 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
-  OnModuleInit,
   SetMetadata,
   UseGuards,
 } from '@nestjs/common';
-import { ModuleRef, Reflector } from '@nestjs/core';
+import { Reflector } from '@nestjs/core';
 
 import { GUARD_PROVIDER } from './provider';
 
 const BasicGuardSymbol = Symbol('BasicGuard');
 
 @Injectable()
-export class BasicGuard implements CanActivate, OnModuleInit {
-  constructor(
-    private readonly ref: ModuleRef,
-    private readonly reflector: Reflector
-  ) {}
-
-  onModuleInit() {}
+export class BasicGuard implements CanActivate {
+  constructor(private readonly reflector: Reflector) {}
 
   async canActivate(context: ExecutionContext) {
     // api is public
