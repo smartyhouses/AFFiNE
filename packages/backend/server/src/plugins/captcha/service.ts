@@ -48,7 +48,7 @@ export class CaptchaService {
     return (
       !!outcome.success &&
       // skip hostname check in dev mode
-      (this.config.node.dev || outcome.hostname === this.config.host)
+      (this.config.node.dev || outcome.hostname === this.config.server.host)
     );
   }
 
