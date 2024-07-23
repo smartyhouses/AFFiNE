@@ -16,7 +16,7 @@ export class BasicGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
   async canActivate(context: ExecutionContext) {
-    // api is public
+    // get registered guard name
     const providerName = this.reflector.get<string>(
       BasicGuardSymbol,
       context.getHandler()
