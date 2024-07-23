@@ -40,8 +40,7 @@ export class BasicGuard implements CanActivate {
  * @example
  *
  * ```typescript
- * \@UseBasicGuard()
- * \@Guard('captcha') // use captcha guard
+ * \@UseBasicGuard('captcha') // use captcha guard
  * \@Auth()
  * \@Query(() => UserType)
  * user(@CurrentUser() user: CurrentUser) {
@@ -49,9 +48,9 @@ export class BasicGuard implements CanActivate {
  * }
  * ```
  */
-export const UseBasicGuard = () => {
-  return UseGuards(BasicGuard);
+export const UseBasicGuard = (name: string): MethodDecorator => {
+  return (target: any, key: string | symbol, descriptor?: any) => {
+    UseGuards(BasicGuard)(target, key, descriptor);
+    SetMetadata(BasicGuardSymbol, name)(target, key, descriptor);
+  };
 };
-
-// api is public accessible
-export const Guard = (name: string) => SetMetadata(BasicGuardSymbol, name);

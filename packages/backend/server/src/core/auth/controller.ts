@@ -15,7 +15,6 @@ import {
   Config,
   EarlyAccessRequired,
   EmailTokenNotFound,
-  Guard,
   InternalServerError,
   InvalidEmailToken,
   SignUpForbidden,
@@ -52,8 +51,7 @@ export class AuthController {
   ) {}
 
   @Public()
-  @UseBasicGuard()
-  @Guard('captcha')
+  @UseBasicGuard('captcha')
   @Post('/sign-in')
   @Header('content-type', 'application/json')
   async signIn(
