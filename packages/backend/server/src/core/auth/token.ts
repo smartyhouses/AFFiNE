@@ -6,8 +6,6 @@ import { PrismaClient } from '@prisma/client';
 
 import { CryptoHelper } from '../../fundamentals/helpers';
 
-type Transaction = Parameters<Parameters<PrismaClient['$transaction']>[0]>[0];
-
 export enum TokenType {
   SignIn,
   VerifyEmail,
@@ -73,7 +71,7 @@ export class TokenService {
 
     // always revoke expired token
     if (expired || (valid && !keep)) {
-      const deleted = await this.revokeToken(type, token, this.db);
+      const deleted = await this.revokeToken(type, token);
 
       // already deleted, means token has been used
       if (!deleted.count) {
@@ -84,9 +82,8 @@ export class TokenService {
     return valid ? record : null;
   }
 
-  async revokeToken(type: TokenType, token: string, tx?: Transaction) {
-    const client = tx || this.db;
-    return await client.verificationToken.deleteMany({
+  async revokeToken(type: TokenType, token: string) {
+    return await this.db.verificationToken.deleteMany({
       where: {
         token,
         type,
