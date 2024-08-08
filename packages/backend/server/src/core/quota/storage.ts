@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import { WorkspaceOwnerNotFound } from '../../fundamentals';
 import { FeatureService, FeatureType } from '../features';
+import { PermissionService } from '../permission';
 import { WorkspaceBlobStorage } from '../storage';
-import { PermissionService } from '../workspaces/permission';
 import { OneGB } from './constant';
 import { QuotaService } from './service';
 import { formatSize, QuotaQueryType } from './types';

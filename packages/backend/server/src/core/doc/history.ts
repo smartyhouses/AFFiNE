@@ -13,8 +13,8 @@ import {
   OnEvent,
   WorkspaceNotFound,
 } from '../../fundamentals';
+import { Permission } from '../permission';
 import { QuotaService } from '../quota';
-import { Permission } from '../workspaces/types';
 import { isEmptyBuffer } from './manager';
 
 @Injectable()

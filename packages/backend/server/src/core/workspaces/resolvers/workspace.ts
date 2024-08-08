@@ -11,7 +11,6 @@ import {
 import { PrismaClient } from '@prisma/client';
 import { getStreamAsBuffer } from 'get-stream';
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs';
-import { applyUpdate, Doc } from 'yjs';
 
 import type { FileUpload } from '../../../fundamentals';
 import {
@@ -29,14 +28,14 @@ import {
   WorkspaceOwnerNotFound,
 } from '../../../fundamentals';
 import { CurrentUser, Public } from '../../auth';
+import { DocManager } from '../../doc';
+import { Permission, PermissionService } from '../../permission';
 import { QuotaManagementService, QuotaQueryType } from '../../quota';
 import { WorkspaceBlobStorage } from '../../storage';
 import { UserService, UserType } from '../../user';
-import { PermissionService } from '../permission';
 import {
   InvitationType,
   InviteUserType,
-  Permission,
   UpdateWorkspaceInput,
   WorkspaceType,
 } from '../types';
@@ -59,7 +58,8 @@ export class WorkspaceResolver {
     private readonly users: UserService,
     private readonly event: EventEmitter,
     private readonly blobStorage: WorkspaceBlobStorage,
-    private readonly mutex: MutexService
+    private readonly mutex: MutexService,
+    private readonly doc: DocManager
   ) {}
 
   @ResolveField(() => Permission, {
@@ -412,17 +412,7 @@ export class WorkspaceResolver {
       })
       .then(({ workspaceId }) => workspaceId);
 
-    const snapshot = await this.prisma.snapshot.findFirstOrThrow({
-      where: {
-        id: workspaceId,
-        workspaceId,
-      },
-    });
-
-    const doc = new Doc();
-
-    applyUpdate(doc, new Uint8Array(snapshot.blob));
-    const metaJSON = doc.getMap('meta').toJSON();
+    const workspaceContent = await this.doc.getWorkspaceContent(workspaceId);
 
     const owner = await this.permissions.getWorkspaceOwner(workspaceId);
     const invitee = await this.permissions.getWorkspaceInvitation(
@@ -431,11 +421,10 @@ export class WorkspaceResolver {
     );
 
     let avatar = '';
-
-    if (metaJSON.avatar) {
+    if (workspaceContent?.avatarKey) {
       const avatarBlob = await this.blobStorage.get(
         workspaceId,
-        metaJSON.avatar
+        workspaceContent.avatarKey
       );
 
       if (avatarBlob.body) {
@@ -445,7 +434,7 @@ export class WorkspaceResolver {
 
     return {
       workspace: {
-        name: metaJSON.name || '',
+        name: workspaceContent?.name ?? '',
         avatar: avatar || defaultWorkspaceAvatar,
         id: workspaceId,
       },

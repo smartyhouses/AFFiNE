@@ -12,7 +12,7 @@ import { ActionForbidden } from '../../fundamentals';
 import { CurrentUser } from '../auth';
 import { Admin } from '../common';
 import { FeatureManagementService, FeatureType } from '../features';
-import { PermissionService } from './permission';
+import { PermissionService } from '../permission';
 import { WorkspaceType } from './types';
 
 @Resolver(() => WorkspaceType)

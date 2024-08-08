@@ -11,7 +11,9 @@ import { AppController } from './app.controller';
 import { AuthModule } from './core/auth';
 import { ADD_ENABLED_FEATURES, ServerConfigModule } from './core/config';
 import { DocModule } from './core/doc';
+import { DocRendererModule } from './core/doc-renderer';
 import { FeatureModule } from './core/features';
+import { PermissionModule } from './core/permission';
 import { QuotaModule } from './core/quota';
 import { SelfhostModule } from './core/selfhost';
 import { StorageModule } from './core/storage';
@@ -41,15 +43,9 @@ import { ENABLED_PLUGINS } from './plugins/registry';
 
 export const FunctionalityModules = [
   ConfigModule.forRoot(),
-  ScheduleModule.forRoot(),
-  EventModule,
   CacheModule,
-  MutexModule,
   PrismaModule,
   MetricsModule,
-  RateLimiterModule,
-  MailModule,
-  StorageProviderModule,
   HelpersModule,
   ErrorModule,
 ];
@@ -147,12 +143,12 @@ export function buildAppModule() {
   const factor = new AppModuleBuilder(AFFiNE);
 
   factor
-    // common fundamental modules
+    // basic
     .use(...FunctionalityModules)
     .useIf(config => config.flavor.sync, WebSocketModule)
 
     // auth
-    .use(UserModule, AuthModule)
+    .use(UserModule, AuthModule, PermissionModule)
 
     // business modules
     .use(DocModule)
@@ -163,8 +159,14 @@ export function buildAppModule() {
     // graphql server only
     .useIf(
       config => config.flavor.graphql,
-      ServerConfigModule,
+      ScheduleModule.forRoot(),
+      EventModule,
+      MutexModule,
       GqlModule,
+      RateLimiterModule,
+      MailModule,
+      StorageProviderModule,
+      ServerConfigModule,
       StorageModule,
       WorkspaceModule,
       FeatureModule,
@@ -172,7 +174,8 @@ export function buildAppModule() {
     )
 
     // self hosted server only
-    .useIf(config => config.isSelfhosted, SelfhostModule);
+    .useIf(config => config.isSelfhosted, SelfhostModule)
+    .useIf(config => config.flavor.renderer, DocRendererModule);
 
   // plugin modules
   ENABLED_PLUGINS.forEach(name => {

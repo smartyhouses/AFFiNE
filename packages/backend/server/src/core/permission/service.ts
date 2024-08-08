@@ -3,12 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
 
 import { DocAccessDenied, WorkspaceAccessDenied } from '../../fundamentals';
-import { Permission } from './types';
-
-export enum PublicPageMode {
-  Page,
-  Edgeless,
-}
+import { Permission, PublicPageMode } from './types';
 
 @Injectable()
 export class PermissionService {
@@ -193,6 +188,17 @@ export class PermissionService {
     // unsigned in, workspace is not public
     // unaccessible
     return false;
+  }
+
+  async allowUrlPreview(ws: string) {
+    const count = await this.prisma.workspace.count({
+      where: {
+        id: ws,
+        public: true,
+      },
+    });
+
+    return count > 0;
   }
 
   async grant(

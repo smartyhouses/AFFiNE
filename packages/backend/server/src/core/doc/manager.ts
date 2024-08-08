@@ -26,6 +26,12 @@ import {
   metrics,
   OnEvent,
 } from '../../fundamentals';
+import {
+  PageDocContent,
+  parsePageDoc,
+  parseWorkspaceDoc,
+  WorkspaceDocContent,
+} from '../utils/blocksuite';
 
 function compare(yBinary: Buffer, jwstBinary: Buffer, strict = false): boolean {
   if (yBinary.equals(jwstBinary)) {
@@ -270,6 +276,7 @@ export class DocManager implements OnModuleInit, OnModuleDestroy {
     });
 
     await this.updateCachedUpdatesCount(workspaceId, guid, 1);
+    await this.markDocContentCacheStale(workspaceId, guid);
 
     return timestamp;
   }
@@ -333,6 +340,7 @@ export class DocManager implements OnModuleInit, OnModuleDestroy {
         });
     });
     await this.updateCachedUpdatesCount(workspaceId, guid, updates.length);
+    await this.markDocContentCacheStale(workspaceId, guid);
 
     return timestamp;
   }
@@ -402,6 +410,69 @@ export class DocManager implements OnModuleInit, OnModuleDestroy {
     }
 
     return null;
+  }
+
+  async getPageContent(
+    workspaceId: string,
+    guid: string
+  ): Promise<PageDocContent | null> {
+    const cacheKey = `workspace:${workspaceId}:doc:${guid}:content`;
+    const cachedResult = await this.cache.get<PageDocContent>(cacheKey);
+
+    if (cachedResult) {
+      return cachedResult;
+    }
+
+    const doc = await this.get(workspaceId, guid);
+    if (!doc) {
+      return null;
+    }
+
+    const content = parsePageDoc(doc.doc);
+
+    if (content) {
+      await this.cache.set(cacheKey, content, {
+        ttl:
+          7 *
+          24 *
+          60 *
+          60 *
+          1000 /* TODO(@forehalo): we need time constants helper */,
+      });
+    }
+    return content;
+  }
+
+  async getWorkspaceContent(
+    workspaceId: string
+  ): Promise<WorkspaceDocContent | null> {
+    const cacheKey = `workspace:${workspaceId}:content`;
+    const cachedResult = await this.cache.get<WorkspaceDocContent>(cacheKey);
+
+    if (cachedResult) {
+      return cachedResult;
+    }
+
+    const doc = await this.get(workspaceId, workspaceId);
+    if (!doc) {
+      return null;
+    }
+
+    const content = parseWorkspaceDoc(doc.doc);
+
+    if (content) {
+      await this.cache.set(cacheKey, content);
+    }
+
+    return content;
+  }
+
+  async markDocContentCacheStale(workspaceId: string, guid: string) {
+    const key =
+      workspaceId === guid
+        ? `workspace:${workspaceId}:content`
+        : `workspace:${workspaceId}:doc:${guid}:content`;
+    await this.cache.delete(key);
   }
 
   /**
