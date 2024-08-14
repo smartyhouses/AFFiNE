@@ -18,7 +18,7 @@ export const CollapsibleItem = ({
   items: string[];
   changeModule?: (module: string) => void;
 }) => {
-  const { activeSubTab, setActiveSubTab } = useNav();
+  const { activeTab, activeSubTab, setActiveSubTab } = useNav();
   const handleClick = useCallback(
     (id: string) => {
       const targetElement = document.getElementById(id);
@@ -33,14 +33,14 @@ export const CollapsibleItem = ({
     },
     [changeModule, setActiveSubTab, title]
   );
-
+  const settingsActive = activeTab === 'Settings';
   return (
     <Accordion type="multiple" className="w-full ">
       <AccordionItem value="item-1" className="border-b-0">
         <Link to={`/admin/settings#${title}`}>
           <AccordionTrigger
             onClick={() => handleClick(title)}
-            className={`py-2 px-3 rounded ${activeSubTab === title ? 'bg-zinc-100' : ''}`}
+            className={`py-2 px-3 rounded ${settingsActive && activeSubTab === title ? 'bg-zinc-100' : ''}`}
           >
             {title}
           </AccordionTrigger>
@@ -54,7 +54,7 @@ export const CollapsibleItem = ({
             >
               <AccordionContent
                 onClick={() => handleClick(item)}
-                className={`py-1 px-2 rounded text-ellipsis whitespace-nowrap overflow-hidden ${activeSubTab === item ? 'bg-zinc-100' : ''}`}
+                className={`py-1 px-2 rounded text-ellipsis whitespace-nowrap overflow-hidden ${settingsActive && activeSubTab === item ? 'bg-zinc-100' : ''}`}
               >
                 {item}
               </AccordionContent>

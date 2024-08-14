@@ -9,7 +9,7 @@ import { cn } from '@affine/admin/utils';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import { ClipboardListIcon, SettingsIcon, UsersIcon } from 'lucide-react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useGetServerRuntimeConfig } from '../settings/use-get-server-runtime-config';
 import { CollapsibleItem } from './collapsible-item';
@@ -26,16 +26,16 @@ const TabsMap: { [key: string]: string } = {
 export function Nav() {
   const { moduleList } = useGetServerRuntimeConfig();
   const { activeTab, setActiveTab, setCurrentModule } = useNav();
+  const path = useLocation().pathname;
 
   useEffect(() => {
-    const path = window.location.pathname;
     for (const key in TabsMap) {
       if (path.includes(key)) {
         setActiveTab(TabsMap[key]);
         return;
       }
     }
-  }, [setActiveTab]);
+  }, [path, setActiveTab]);
 
   return (
     <div className="flex flex-col gap-4 py-2 justify-between flex-grow overflow-hidden">
