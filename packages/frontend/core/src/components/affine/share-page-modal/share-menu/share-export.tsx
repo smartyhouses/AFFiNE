@@ -1,4 +1,4 @@
-import { MenuIcon, MenuItem } from '@affine/component';
+import { MenuItem } from '@affine/component';
 import { Divider } from '@affine/component/ui/divider';
 import { ExportMenuItems } from '@affine/core/components/page-list';
 import { useExportPage } from '@affine/core/hooks/affine/use-export-page';
@@ -59,12 +59,8 @@ export const ShareExport = ({
               onSelect={onClickCopyLink}
               block
               disabled={!sharingUrl}
-              preFix={
-                <MenuIcon>
-                  <CopyIcon fontSize={16} />
-                </MenuIcon>
-              }
-              endFix={
+              prefixIcon={<CopyIcon fontSize={16} />}
+              suffix={
                 <div className={styles.shortcutStyle}>
                   {isMac ? '⌘ + ⌥ + C' : 'Ctrl + Shift + C'}
                 </div>

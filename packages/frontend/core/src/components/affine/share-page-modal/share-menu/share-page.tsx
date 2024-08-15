@@ -305,7 +305,7 @@ export const AffineSharePage = (props: ShareMenuProps) => {
             </>
           )}
           <MenuItem
-            endFix={<ArrowRightSmallIcon />}
+            suffixIcon={<ArrowRightSmallIcon />}
             block
             type="danger"
             className={styles.menuItemStyle}
