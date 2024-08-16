@@ -1,44 +1,30 @@
 import { FrameworkScope, useLiveData } from '@toeverything/infra';
-import { lazy as reactLazy, useLayoutEffect, useMemo } from 'react';
+import { useLayoutEffect } from 'react';
+import type { createMemoryRouter } from 'react-router-dom';
 import {
-  createMemoryRouter,
   RouterProvider,
   UNSAFE_LocationContext,
   UNSAFE_RouteContext,
 } from 'react-router-dom';
 
-import { viewRoutes } from '../../../router';
 import type { View } from '../entities/view';
-import { RouteContainer } from './route-container';
 
-const warpedRoutes = viewRoutes.map(({ path, lazy }) => {
-  const Component = reactLazy(() =>
-    lazy().then(m => ({
-      default: m.Component as React.ComponentType,
-    }))
-  );
-  const route = {
-    Component,
-  };
-
-  return {
-    path,
-    Component: () => {
-      return <RouteContainer route={route} />;
-    },
-  };
-});
-
-export const ViewRoot = ({ view }: { view: View }) => {
-  const viewRouter = useMemo(() => createMemoryRouter(warpedRoutes), []);
+export const ViewRoot = ({
+  view,
+  router,
+}: {
+  view: View;
+  router: ReturnType<typeof createMemoryRouter>;
+}) => {
+  // const viewRouter = useMemo(() => createMemoryRouter(warpedRoutes), []);
 
   const location = useLiveData(view.location$);
 
   useLayoutEffect(() => {
-    viewRouter.navigate(location).catch(err => {
+    router.navigate(location).catch(err => {
       console.error('navigate error', err);
     });
-  }, [location, view, viewRouter]);
+  }, [location, view, router]);
 
   // https://github.com/remix-run/react-router/issues/7375#issuecomment-975431736
   return (
@@ -51,7 +37,7 @@ export const ViewRoot = ({ view }: { view: View }) => {
             isDataRoute: false,
           }}
         >
-          <RouterProvider router={viewRouter} />
+          <RouterProvider router={router} />
         </UNSAFE_RouteContext.Provider>
       </UNSAFE_LocationContext.Provider>
     </FrameworkScope>
