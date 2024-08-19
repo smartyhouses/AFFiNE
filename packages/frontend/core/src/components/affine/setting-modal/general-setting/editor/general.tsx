@@ -14,6 +14,7 @@ import {
   SettingWrapper,
 } from '@affine/component/setting-components';
 import { useAppSettingHelper } from '@affine/core/hooks/affine/use-app-setting-helper';
+import type { FontData } from '@affine/core/modules/system-font-family/entities/system-font-family';
 import { SystemFontFamilyService } from '@affine/core/modules/system-font-family/services/system-font-family';
 import { useI18n } from '@affine/i18n';
 import {
@@ -138,7 +139,11 @@ const FontMenuItems = ({ onSelect }: { onSelect: (font: string) => void }) => {
           <Scrollable.Viewport>
             {result.length > 0 ? (
               result.map(font => (
-                <FontMenuItem key={font} font={font} onSelect={onSelect} />
+                <FontMenuItem
+                  key={font.fullName}
+                  font={font}
+                  onSelect={onSelect}
+                />
               ))
             ) : (
               <div>not found</div>
@@ -155,14 +160,21 @@ const FontMenuItem = ({
   font,
   onSelect,
 }: {
-  font: string;
+  font: FontData;
   onSelect: (font: string) => void;
 }) => {
-  const handleFontSelect = useCallback(() => onSelect(font), [font, onSelect]);
-  const fontFamily = getFontFamily(font);
+  const handleFontSelect = useCallback(
+    () => onSelect(font.fullName),
+    [font, onSelect]
+  );
+  const fontFamily = getFontFamily(font.family);
   return (
-    <MenuItem key={font} onSelect={handleFontSelect} style={{ fontFamily }}>
-      {font}
+    <MenuItem
+      key={font.fullName}
+      onSelect={handleFontSelect}
+      style={{ fontFamily }}
+    >
+      {font.fullName}
     </MenuItem>
   );
 };

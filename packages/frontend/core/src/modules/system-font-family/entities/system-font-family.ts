@@ -1,4 +1,3 @@
-import { apis } from '@affine/electron-api';
 import {
   effect,
   Entity,
@@ -10,6 +9,13 @@ import {
 } from '@toeverything/infra';
 import { exhaustMap } from 'rxjs';
 
+export type FontData = {
+  family: string;
+  fullName: string;
+  postscriptName: string;
+  style: string;
+};
+
 export class SystemFontFamily extends Entity {
   constructor() {
     super();
@@ -17,7 +23,7 @@ export class SystemFontFamily extends Entity {
 
   readonly searchText$ = new LiveData<string | null>(null);
   readonly isLoading$ = new LiveData<boolean>(false);
-  readonly fontList$ = new LiveData<string[]>([]);
+  readonly fontList$ = new LiveData<FontData[]>([]);
   readonly result$ = LiveData.computed(get => {
     const fontList = get(this.fontList$);
     const searchText = get(this.searchText$);
@@ -26,7 +32,7 @@ export class SystemFontFamily extends Entity {
     }
 
     const filteredFonts = fontList.filter(font =>
-      font.toLowerCase().includes(searchText.toLowerCase())
+      font.fullName.toLowerCase().includes(searchText.toLowerCase())
     );
     return filteredFonts;
   }).throttleTime(500);
@@ -34,10 +40,12 @@ export class SystemFontFamily extends Entity {
   loadFontList = effect(
     exhaustMap(() => {
       return fromPromise(async () => {
-        if (!apis?.fontList) {
+        if (!(window as any).queryLocalFonts) {
           return [];
         }
-        return apis.fontList.getSystemFonts();
+        const fonts = await (window as any).queryLocalFonts();
+
+        return fonts;
       }).pipe(
         mapInto(this.fontList$),
         // TODO: catchErrorInto(this.error$),
