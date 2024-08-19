@@ -27,11 +27,15 @@ import {
 } from '@toeverything/infra';
 import {
   type ChangeEvent,
+  forwardRef,
+  type HTMLAttributes,
+  type PropsWithChildren,
   useCallback,
   useEffect,
   useMemo,
   useState,
 } from 'react';
+import { Virtuoso } from 'react-virtuoso';
 
 import { menu, menuTrigger, searchInput, settingWrapper } from './style.css';
 
@@ -97,6 +101,22 @@ const FontFamilySettings = () => {
 
 const getFontFamily = (font: string) => `${font}, ${fontStyleOptions[0].value}`;
 
+const Scroller = forwardRef<
+  HTMLDivElement,
+  PropsWithChildren<HTMLAttributes<HTMLDivElement>>
+>(({ children, ...props }, ref) => {
+  return (
+    <Scrollable.Root>
+      <Scrollable.Viewport {...props} ref={ref}>
+        {children}
+      </Scrollable.Viewport>
+      <Scrollable.Scrollbar />
+    </Scrollable.Root>
+  );
+});
+
+Scroller.displayName = 'Scroller';
+
 const FontMenuItems = ({ onSelect }: { onSelect: (font: string) => void }) => {
   const systemFontFamily = useService(SystemFontFamilyService).systemFontFamily;
   useEffect(() => {
@@ -138,15 +158,21 @@ const FontMenuItems = ({ onSelect }: { onSelect: (font: string) => void }) => {
         <Scrollable.Root style={{ height: '200px' }}>
           <Scrollable.Viewport>
             {result.length > 0 ? (
-              result.map(font => (
-                <FontMenuItem
-                  key={font.fullName}
-                  font={font}
-                  onSelect={onSelect}
-                />
-              ))
+              <Virtuoso
+                totalCount={result.length}
+                components={{
+                  Scroller: Scroller,
+                }}
+                itemContent={index => (
+                  <FontMenuItem
+                    key={result[index].fullName}
+                    font={result[index]}
+                    onSelect={onSelect}
+                  />
+                )}
+              />
             ) : (
-              <div>not found</div>
+              <div>No font found</div>
             )}
           </Scrollable.Viewport>
           <Scrollable.Scrollbar />
@@ -205,6 +231,7 @@ const CustomFontFamilySettings = () => {
         items={<FontMenuItems onSelect={onCustomFontFamilyChange} />}
         contentOptions={{
           align: 'end',
+          style: { width: '250px' },
         }}
       >
         <MenuTrigger className={menuTrigger} style={{ fontFamily }}>
