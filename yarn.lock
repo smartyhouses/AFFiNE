@@ -25,7 +25,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     express: "npm:^4.19.2"
     http-proxy-middleware: "npm:^3.0.0"
     serve: "npm:^14.2.1"
@@ -38,7 +38,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     express: "npm:^4.19.2"
     http-proxy-middleware: "npm:^3.0.0"
     serve: "npm:^14.2.1"
@@ -51,7 +51,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     express: "npm:^4.19.2"
     http-proxy-middleware: "npm:^3.0.0"
     serve: "npm:^14.2.1"
@@ -64,7 +64,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     express: "npm:^4.19.2"
     http-proxy-middleware: "npm:^3.0.0"
     serve: "npm:^14.2.1"
@@ -77,7 +77,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
   languageName: unknown
   linkType: soft
 
@@ -87,7 +87,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     "@types/fs-extra": "npm:^11.0.4"
     fs-extra: "npm:^11.2.0"
   languageName: unknown
@@ -100,10 +100,10 @@ __metadata:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
     "@affine/electron-api": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     "@types/fs-extra": "npm:^11.0.4"
     fs-extra: "npm:^11.2.0"
-    playwright: "npm:=1.44.1"
+    playwright: "npm:=1.46.1"
   languageName: unknown
   linkType: soft
 
@@ -113,7 +113,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
   languageName: unknown
   linkType: soft
 
@@ -123,7 +123,7 @@ __metadata:
   dependencies:
     "@affine-test/fixtures": "workspace:*"
     "@affine-test/kit": "workspace:*"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
   languageName: unknown
   linkType: soft
 
@@ -139,7 +139,7 @@ __metadata:
   dependencies:
     "@affine/electron-api": "workspace:*"
     "@node-rs/argon2": "npm:^1.8.0"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     express: "npm:^4.19.2"
     http-proxy-middleware: "npm:^3.0.0"
   peerDependencies:
@@ -192,7 +192,7 @@ __metadata:
     date-fns: "npm:^3.6.0"
     embla-carousel-react: "npm:^8.1.5"
     input-otp: "npm:^1.2.4"
-    lucide-react: "npm:^0.408.0"
+    lucide-react: "npm:^0.428.0"
     next-themes: "npm:^0.3.0"
     react: "npm:^18.3.1"
     react-day-picker: "npm:^8.10.1"
@@ -358,7 +358,7 @@ __metadata:
     rxjs: "npm:^7.8.1"
     sonner: "npm:^1.4.41"
     storybook: "npm:^8.2.9"
-    storybook-dark-mode: "npm:4.0.1"
+    storybook-dark-mode: "npm:4.0.2"
     swr: "npm:^2.2.5"
     typescript: "npm:^5.4.5"
     unplugin-swc: "npm:^1.5.1"
@@ -469,7 +469,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-error-boundary: "npm:^4.0.13"
     react-is: "npm:18.3.1"
-    react-refresh: "npm:^0.10.0"
+    react-refresh: "npm:^0.14.0"
     react-router-dom: "npm:^6.22.3"
     react-transition-state: "npm:^2.1.1"
     react-virtuoso: "npm:^4.7.8"
@@ -648,7 +648,7 @@ __metadata:
     "@istanbuljs/schema": "npm:^0.1.3"
     "@magic-works/i18n-codegen": "npm:^0.6.0"
     "@nx/vite": "npm:^19.5.3"
-    "@playwright/test": "npm:=1.44.1"
+    "@playwright/test": "npm:=1.46.1"
     "@taplo/cli": "npm:^0.7.0"
     "@testing-library/react": "npm:^16.0.0"
     "@toeverything/infra": "workspace:*"
@@ -704,7 +704,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@affine/native@workspace:packages/frontend/native"
   dependencies:
-    "@napi-rs/cli": "npm:3.0.0-alpha.60"
+    "@napi-rs/cli": "npm:3.0.0-alpha.62"
     "@types/node": "npm:^20.12.7"
     "@types/uuid": "npm:^10.0.0"
     ava: "npm:^6.1.2"
@@ -722,7 +722,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@affine/server-native@workspace:packages/backend/native"
   dependencies:
-    "@napi-rs/cli": "npm:3.0.0-alpha.60"
+    "@napi-rs/cli": "npm:3.0.0-alpha.62"
     lib0: "npm:^0.2.93"
     nx: "npm:^19.0.0"
     nx-cloud: "npm:^19.0.0"
@@ -740,7 +740,7 @@ __metadata:
     "@affine/server-native": "workspace:*"
     "@apollo/server": "npm:^4.10.2"
     "@aws-sdk/client-s3": "npm:^3.620.0"
-    "@fal-ai/serverless-client": "npm:^0.13.0"
+    "@fal-ai/serverless-client": "npm:^0.14.0"
     "@google-cloud/opentelemetry-cloud-monitoring-exporter": "npm:^0.19.0"
     "@google-cloud/opentelemetry-cloud-trace-exporter": "npm:^2.2.0"
     "@google-cloud/opentelemetry-resource-util": "npm:^2.2.0"
@@ -814,7 +814,7 @@ __metadata:
     mustache: "npm:^4.2.0"
     nanoid: "npm:^5.0.7"
     nest-commander: "npm:^3.12.5"
-    nestjs-throttler-storage-redis: "npm:^0.4.1"
+    nestjs-throttler-storage-redis: "npm:^0.5.0"
     nodemailer: "npm:^6.9.13"
     nodemon: "npm:^3.1.0"
     on-headers: "npm:^1.0.2"
@@ -5333,6 +5333,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fal-ai/serverless-client@npm:^0.14.0":
+  version: 0.14.2
+  resolution: "@fal-ai/serverless-client@npm:0.14.2"
+  dependencies:
+    "@msgpack/msgpack": "npm:^3.0.0-beta2"
+    eventsource-parser: "npm:^1.1.2"
+    robot3: "npm:^0.4.1"
+  checksum: 10/01b45c90be38c0b6babc55414ddb863d066308c01ed470eac1ef065c8d62de1e0cb72647199827e46c1b3d69d929c6dbca02f7cf0d7e9c7951499f1f20ad5767
+  languageName: node
+  linkType: hard
+
 "@fastify/busboy@npm:^2.0.0":
   version: 2.1.1
   resolution: "@fastify/busboy@npm:2.1.1"
@@ -6996,9 +7007,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@napi-rs/cli@npm:3.0.0-alpha.60":
-  version: 3.0.0-alpha.60
-  resolution: "@napi-rs/cli@npm:3.0.0-alpha.60"
+"@napi-rs/cli@npm:3.0.0-alpha.62":
+  version: 3.0.0-alpha.62
+  resolution: "@napi-rs/cli@npm:3.0.0-alpha.62"
   dependencies:
     "@napi-rs/cross-toolchain": "npm:^0.0.16"
     "@napi-rs/wasm-tools": "npm:^0.0.2"
@@ -7025,7 +7036,7 @@ __metadata:
   bin:
     napi: ./dist/cli.js
     napi-raw: ./cli.mjs
-  checksum: 10/07b3886316d33f03f0c217148fcec8318ff603ef332bef178001ffe4cd2529b928f924e3a5b72238bb80996f38ff792bc3448b098144c251629516b6437bfc8c
+  checksum: 10/c3115ffa7c35c47188f97ec7633694bdd3fdd55a5c005884567932e08e8bde15179da8211599884e3ef8c5d9f5c8c976abd889aad2cca8849ae64a0efcda9685
   languageName: node
   linkType: hard
 
@@ -9913,14 +9924,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:=1.44.1":
-  version: 1.44.1
-  resolution: "@playwright/test@npm:1.44.1"
+"@playwright/test@npm:=1.46.1":
+  version: 1.46.1
+  resolution: "@playwright/test@npm:1.46.1"
   dependencies:
-    playwright: "npm:1.44.1"
+    playwright: "npm:1.46.1"
   bin:
     playwright: cli.js
-  checksum: 10/572b4c97834fae54fda833939b8f376df2c301b724f9825a3c705533efc124beb346dd9406f54cd771b3f79c00f0e5c70b5469ef33818a0d2e2ea17b19636f9a
+  checksum: 10/09e2c28574402f14e2d6f6843022c5778382dc7f703bae931dd531fc0fc1b725a862d3b52932bd6912cb13cbaed54822af33eb3d70134d93b0f1c10ec3fb0756
   languageName: node
   linkType: hard
 
@@ -13830,7 +13841,7 @@ __metadata:
     react: "npm:^18.2.0"
     rxjs: "npm:^7.8.1"
     vite: "npm:^5.2.8"
-    vite-plugin-dts: "npm:4.0.2"
+    vite-plugin-dts: "npm:4.0.3"
     vitest: "npm:1.6.0"
     yjs: "patch:yjs@npm%3A13.6.18#~/.yarn/patches/yjs-npm-13.6.18-ad0d5f7c43.patch"
     zod: "npm:^3.22.4"
@@ -18714,9 +18725,9 @@ __metadata:
   linkType: hard
 
 "core-js@npm:^3.36.1":
-  version: 3.38.0
-  resolution: "core-js@npm:3.38.0"
-  checksum: 10/95f5c768ee14aaf79e8fece9e58023a5a6367186184c92e825a842f271d3d91c559cfadee9c75712c463f248c61d636ed5a31a1fff1c904d4f5a2ed69b23f0c2
+  version: 3.38.1
+  resolution: "core-js@npm:3.38.1"
+  checksum: 10/3c25fdf0b2595ed37ceb305213a61e2cf26185f628455e99d1c736dda5f69e2de4de7126e6a1da136f54260c4fcc982c4215e37b5a618790a597930f854c0a37
   languageName: node
   linkType: hard
 
@@ -20097,30 +20108,30 @@ __metadata:
   linkType: hard
 
 "embla-carousel-react@npm:^8.1.5":
-  version: 8.1.8
-  resolution: "embla-carousel-react@npm:8.1.8"
+  version: 8.2.0
+  resolution: "embla-carousel-react@npm:8.2.0"
   dependencies:
-    embla-carousel: "npm:8.1.8"
-    embla-carousel-reactive-utils: "npm:8.1.8"
+    embla-carousel: "npm:8.2.0"
+    embla-carousel-reactive-utils: "npm:8.2.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.1 || ^18.0.0
-  checksum: 10/1a4ab89be89be7cd2acfc2c737f551c1eb479cf14a9cf83ece3682469c23b40d190fe46e5e1afd897296bb65c71dbd0a9eb9a42de85ef17b4480af890cffa8cd
+  checksum: 10/388a11e2ee7a7a09ac3a4001d3dd9d2c77b15bf9028e9fc90b89e96bfc08fb7a4a3df54e7ddf3a1f8e3d844a2d095e49fd73eb89c38bc90c7e0b10671e3582e2
   languageName: node
   linkType: hard
 
-"embla-carousel-reactive-utils@npm:8.1.8":
-  version: 8.1.8
-  resolution: "embla-carousel-reactive-utils@npm:8.1.8"
+"embla-carousel-reactive-utils@npm:8.2.0":
+  version: 8.2.0
+  resolution: "embla-carousel-reactive-utils@npm:8.2.0"
   peerDependencies:
-    embla-carousel: 8.1.8
-  checksum: 10/6ad319e55246a5d57872cfebfb1951f880f8286922a6ea837c4fed9027f822a6361d407b7e0b51eb5af0a572b8c439a9a309e14e7d825c1dc8e70d205c166731
+    embla-carousel: 8.2.0
+  checksum: 10/34a189543e476582dd5af1cf3d3bdd8bfea3faf47a90f04a642c4d65eefd699377cf65380619b7b98365a02a0eba5e75a2b716ef09c6fea8a703521a8ca47eab
   languageName: node
   linkType: hard
 
-"embla-carousel@npm:8.1.8":
-  version: 8.1.8
-  resolution: "embla-carousel@npm:8.1.8"
-  checksum: 10/0e8c4f145397cebbdd46343a796615b53ff0c84cea14d79e502932300f5f15fc83577303ef32bc10c2216205c717e2b8cb1c98c3c9622d2ad686926a6d4765fb
+"embla-carousel@npm:8.2.0":
+  version: 8.2.0
+  resolution: "embla-carousel@npm:8.2.0"
+  checksum: 10/18cd9d06573c27f14523ec0d33cbbcc091492aff42f69b3f53265c5ff3d2fd3da89ad7ea9ae54d398d440723f6c764d0d5936c35a1975f2410143ca6f55064ce
   languageName: node
   linkType: hard
 
@@ -24836,12 +24847,12 @@ __metadata:
   linkType: hard
 
 "jotai-scope@npm:^0.7.0":
-  version: 0.7.1
-  resolution: "jotai-scope@npm:0.7.1"
+  version: 0.7.2
+  resolution: "jotai-scope@npm:0.7.2"
   peerDependencies:
     jotai: ">=2.9.2"
     react: ">=17.0.0"
-  checksum: 10/3cf61dfaebf2503fc626f877c6d8034de78b87bb0b329f72d70efc77bd31368c2ac067a0ebc55e26e08cb33df8984b5eb2ee9987fdfea400d3ee7f06d57b1b2a
+  checksum: 10/805442a269166a5fce44a02b9e10ee410f7923fd5cd89785f40bf41f2cc740681634428d9e8724dc99caf9e189182914008ce8140af1f1879b6690b5eb2420c8
   languageName: node
   linkType: hard
 
@@ -25942,12 +25953,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.408.0":
-  version: 0.408.0
-  resolution: "lucide-react@npm:0.408.0"
+"lucide-react@npm:^0.428.0":
+  version: 0.428.0
+  resolution: "lucide-react@npm:0.428.0"
   peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/3849f76a3aec5a60008606d661ba8b540f2769b117a797c4c5300f303f18971a725b9de0410f278b89004bff99d1596e3669acb46c6452aa9bd7b029acd1c758
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+  checksum: 10/902e2c44f8de99d5f005b289a8cbbf17f290bf8de2f3f4ba0f38a2c3dc08b1ae15bc8e50ac8fdc4ebffdb1a72ddf14f315c88210b21d61740a0ed9834f37ba52
   languageName: node
   linkType: hard
 
@@ -27487,16 +27498,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nestjs-throttler-storage-redis@npm:^0.4.1":
-  version: 0.4.4
-  resolution: "nestjs-throttler-storage-redis@npm:0.4.4"
+"nestjs-throttler-storage-redis@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "nestjs-throttler-storage-redis@npm:0.5.0"
   peerDependencies:
     "@nestjs/common": ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
     "@nestjs/core": ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-    "@nestjs/throttler": ">=5.0.0"
+    "@nestjs/throttler": ">=6.0.0"
     ioredis: ">=5.0.0"
     reflect-metadata: ^0.2.1
-  checksum: 10/210aa46d734c2290637b287d620e6852ad24297dfd3e4b06461a816eec966bc559363554b402d3a92b491286b4802d18c8549d0b94be23f10161d83cc8068aee
+  checksum: 10/31073270c4fe045bcd37bbf8bf27832724ccffcc42b6d0a46d2f9e0a207c63b29c952250229e0fcb34feef41eea41f095856da1d92a4e6352cc7f04877b57a2c
   languageName: node
   linkType: hard
 
@@ -29110,27 +29121,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.44.1":
-  version: 1.44.1
-  resolution: "playwright-core@npm:1.44.1"
+"playwright-core@npm:1.46.1":
+  version: 1.46.1
+  resolution: "playwright-core@npm:1.46.1"
   bin:
     playwright-core: cli.js
-  checksum: 10/f79f9022bbb760daed371e36c802b27d43dc75e67de4d139d83b47feea51c8b884f3296cce85c3afa71c942290cef1b4369cd9ddf4dda5457a0a81772c73b50a
+  checksum: 10/950aa935bba0b67ed289e07f31a52104c2b2ff9e39c46cda70b83f0b327e8114bcbcdeb4e8f94333ec941f9cd49cfac3af4cad91e247206ce927283482f24d91
   languageName: node
   linkType: hard
 
-"playwright@npm:1.44.1, playwright@npm:=1.44.1":
-  version: 1.44.1
-  resolution: "playwright@npm:1.44.1"
+"playwright@npm:1.46.1, playwright@npm:=1.46.1":
+  version: 1.46.1
+  resolution: "playwright@npm:1.46.1"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.44.1"
+    playwright-core: "npm:1.46.1"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/3207178a78f1c971dddf99c9a08052e462c882092e0d47e3dd8287ced40897a49e387e545a61d31e5d68f7e443d7818660aa12ce43ab662d01d95bcfcfeca2ca
+  checksum: 10/17b0e7495a663dccbda4baf4953823a133af0b7cd4a5978bd2f40768a23e1a92d3659d7b48289a5160c9fa6269d8b9bbf5e2040aa4a63a3dd5f29475343ad3f2
   languageName: node
   linkType: hard
 
@@ -30398,10 +30409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-refresh@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "react-refresh@npm:0.10.0"
-  checksum: 10/0050bb02847477459d879bf3a065b106b18fdeaf80bb5a8820dc40fc8a22264edf118bbb4112242c8d5708cee2dac42d63dad296726bafb5bce9e06598d3fe6e
+"react-refresh@npm:^0.14.0":
+  version: 0.14.2
+  resolution: "react-refresh@npm:0.14.2"
+  checksum: 10/512abf97271ab8623486061be04b608c39d932e3709f9af1720b41573415fa4993d0009fa5138b6705b60a98f4102f744d4e26c952b14f41a0e455521c6be4cc
   languageName: node
   linkType: hard
 
@@ -32642,9 +32653,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook-dark-mode@npm:4.0.1":
-  version: 4.0.1
-  resolution: "storybook-dark-mode@npm:4.0.1"
+"storybook-dark-mode@npm:4.0.2":
+  version: 4.0.2
+  resolution: "storybook-dark-mode@npm:4.0.2"
   dependencies:
     "@storybook/components": "npm:^8.0.0"
     "@storybook/core-events": "npm:^8.0.0"
@@ -32654,7 +32665,7 @@ __metadata:
     "@storybook/theming": "npm:^8.0.0"
     fast-deep-equal: "npm:^3.1.3"
     memoizerific: "npm:^1.11.3"
-  checksum: 10/3225e5bdaba0ea76b65d642202d9712d7de234e3b5673fb46e444892ab114be207dd287778e2002b662ec35bb8153d2624ff280ce51c5299fb13c711431dad40
+  checksum: 10/c9ef7bc6734df7486ff763c9da3c69505269eaf5fd7b5b489553f023b363ea892862241e6d701ad647ca5d1e64fd9a2646b8985c7ea8ac97a3bca87891db6fe5
   languageName: node
   linkType: hard
 
@@ -34925,9 +34936,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-dts@npm:4.0.2":
-  version: 4.0.2
-  resolution: "vite-plugin-dts@npm:4.0.2"
+"vite-plugin-dts@npm:4.0.3":
+  version: 4.0.3
+  resolution: "vite-plugin-dts@npm:4.0.3"
   dependencies:
     "@microsoft/api-extractor": "npm:7.47.4"
     "@rollup/pluginutils": "npm:^5.1.0"
@@ -34945,7 +34956,7 @@ __metadata:
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10/7028ee320d4e743317d244c553524a3dbfbf871651ad59368a6a5fba71ff4778548ce109fa5348500ff7d55c6b64570cfe14207489bad9ba9ef04948d62fe40d
+  checksum: 10/996603ffe81d5264da862ebcc85e05e09e1251fc456841e3f7233c4ae243c699d29889f3206be72b01873527d85beeaa4fcbacc61e31a71a5cab02fdb1d03e0d
   languageName: node
   linkType: hard
 
