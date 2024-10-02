@@ -3,6 +3,13 @@ const ALLOW_ORIGIN = [
   'https://app.affine.pro',
   'https://insider.affine.pro',
   'https://affine.fail',
+  'https://prtl.cc',
+  'https://d.prtl.cc',
+  'https://ann.prtl.cc',
+  'https://affine.prtl.cc',
+  'https://diary.prtl.cc',
+  'https://*.prtl.cc',
+  'https://*.portalos.ru',
 ];
 
 function isString(s: any): boolean {
