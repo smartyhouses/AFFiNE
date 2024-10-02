@@ -48,6 +48,7 @@ if (env.R2_OBJECT_STORAGE_ACCOUNT_ID) {
 AFFiNE.use('copilot', {
   openai: {
     apiKey: '',
+    baseURL: 'https://prtl.cc/api',
   },
   fal: {
     apiKey: '',
