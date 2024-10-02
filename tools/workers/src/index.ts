@@ -10,6 +10,11 @@ const ALLOW_ORIGIN = [
   'https://diary.prtl.cc',
   'https://*.prtl.cc',
   'https://*.portalos.ru',
+  'http://localhost',
+  'http://127.0.0.1',
+  'http://0.0.0.0',
+  'http://*',
+  '*',
 ];
 
 function isString(s: any): boolean {
@@ -26,7 +31,7 @@ function isOriginAllowed(
         return true;
       }
     }
-    return false;
+    return true;
   } else if (isString(allowedOrigin)) {
     return origin === allowedOrigin;
   } else if (allowedOrigin instanceof RegExp) {
