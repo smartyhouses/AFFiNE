@@ -21,7 +21,7 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
 
         isSelfHosted: process.env.SELF_HOSTED === 'true',
         appBuildType: 'stable' as const,
-        serverUrlPrefix: 'https://aff.prtl.cc',
+        serverUrlPrefix: '*',
         appVersion: packageJson.version,
 
         editorVersion: packageJson.devDependencies['@blocksuite/affine'],
