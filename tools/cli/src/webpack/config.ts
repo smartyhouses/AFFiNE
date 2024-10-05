@@ -93,7 +93,6 @@ export const createConfiguration: (
 ) => webpack.Configuration = (cwd, buildFlags, buildConfig) => {
   const config = {
     name: 'affine',
-    disableHostCheck: true,
     // to set a correct base path for the source map
     context: cwd,
     experiments: {
@@ -351,7 +350,7 @@ export const createConfiguration: (
         overlay: process.env.DISABLE_DEV_OVERLAY === 'true' ? false : undefined,
       },
       historyApiFallback: true,
-      allowedHosts: "*",
+      allowedHosts: '*',
       disableHostCheck: true,
       static: [
         {
