@@ -93,6 +93,7 @@ export const createConfiguration: (
 ) => webpack.Configuration = (cwd, buildFlags, buildConfig) => {
   const config = {
     name: 'affine',
+    disableHostCheck: true,
     // to set a correct base path for the source map
     context: cwd,
     experiments: {
@@ -351,6 +352,7 @@ export const createConfiguration: (
       },
       historyApiFallback: true,
       allowedHosts: "*",
+      disableHostCheck: true,
       static: [
         {
           directory: join(
@@ -396,6 +398,7 @@ export const createConfiguration: (
       ...config.optimization,
       minimize: false,
       runtimeChunk: false,
+      disableHostCheck: true,
       splitChunks: {
         maxInitialRequests: Infinity,
         chunks: 'all',
