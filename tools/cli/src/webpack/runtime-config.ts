@@ -21,9 +21,9 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
 
         isSelfHosted: process.env.SELF_HOSTED === 'true',
         appBuildType: 'stable' as const,
-        serverUrlPrefix: 'https://app.affine.pro',
+        serverUrlPrefix: 'https://aff.prtl.cc',
         appVersion: packageJson.version,
-        
+
         editorVersion: packageJson.devDependencies['@blocksuite/affine'],
         githubUrl: 'https://github.com/toeverything/AFFiNE',
         changelogUrl: 'https://affine.pro/what-is-new',
@@ -36,7 +36,7 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
       return {
         ...this.stable,
         appBuildType: 'beta' as const,
-        serverUrlPrefix: 'https://insider.affine.pro',
+        serverUrlPrefix: 'https://aff.prtl.cc',
         changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
       };
     },
@@ -44,7 +44,7 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
       return {
         ...this.stable,
         appBuildType: 'internal' as const,
-        serverUrlPrefix: 'https://insider.affine.pro',
+        serverUrlPrefix: 'https://aff.prtl.cc',
         changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
       };
     },
@@ -53,7 +53,7 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
       return {
         ...this.stable,
         appBuildType: 'canary' as const,
-        serverUrlPrefix: 'https://affine.fail',
+        serverUrlPrefix: 'https://aff.prtl.cc',
         changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
       };
     },

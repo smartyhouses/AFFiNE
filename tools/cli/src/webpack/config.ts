@@ -351,7 +351,7 @@ export const createConfiguration: (
       },
       historyApiFallback: true,
       allowedHosts: '*',
-      disableHostCheck: true,
+      //disableHostCheck: true,
       static: [
         {
           directory: join(
@@ -397,7 +397,7 @@ export const createConfiguration: (
       ...config.optimization,
       minimize: false,
       runtimeChunk: false,
-      disableHostCheck: true,
+      //disableHostCheck: true,
       splitChunks: {
         maxInitialRequests: Infinity,
         chunks: 'all',
