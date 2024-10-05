@@ -36,16 +36,16 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
       return {
         ...this.stable,
         appBuildType: 'beta' as const,
-        serverUrlPrefix: 'https://aff.prtl.cc',
-        changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
+        //serverUrlPrefix: '*',
+        changelogUrl: 'https://prtl.cc',
       };
     },
     get internal() {
       return {
         ...this.stable,
         appBuildType: 'internal' as const,
-        serverUrlPrefix: 'https://aff.prtl.cc',
-        changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
+        //serverUrlPrefix: '*',
+        changelogUrl: 'https://prtl.cc',
       };
     },
     // canary will be aggressive and enable all features
@@ -53,8 +53,8 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
       return {
         ...this.stable,
         appBuildType: 'canary' as const,
-        serverUrlPrefix: 'https://aff.prtl.cc',
-        changelogUrl: 'https://github.com/toeverything/AFFiNE/releases',
+        //serverUrlPrefix: '*',
+        changelogUrl: 'https://prtl.cc',
       };
     },
   };
@@ -72,7 +72,7 @@ export function getBuildConfig(buildFlags: BuildFlags): BUILD_CONFIG_TYPE {
   };
 
   if (buildFlags.mode === 'development') {
-    currentBuildPreset.serverUrlPrefix = 'http://localhost:8080';
+    currentBuildPreset.serverUrlPrefix = '*';
   }
 
   return {
