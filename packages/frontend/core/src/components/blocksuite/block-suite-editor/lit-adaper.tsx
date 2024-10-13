@@ -7,7 +7,7 @@ import { useJournalInfoHelper } from '@affine/core/components/hooks/use-journal'
 import { EditorService } from '@affine/core/modules/editor';
 import { EditorSettingService } from '@affine/core/modules/editor-settting';
 import { toURLSearchParams } from '@affine/core/modules/navigation';
-import { PeekViewService } from '@affine/core/modules/peek-view';
+import { PeekViewService } from '@affine/core/modules/peek-view/services/peek-view';
 import type { DocMode } from '@blocksuite/affine/blocks';
 import {
   DocTitle,
@@ -44,6 +44,7 @@ import { BlocksuiteEditorJournalDocTitle } from './journal-doc-title';
 import {
   patchDocModeService,
   patchEdgelessClipboard,
+  patchEmbedLinkedDocBlockConfig,
   patchForSharedPage,
   patchNotificationService,
   patchParseDocUrlExtension,
@@ -135,6 +136,7 @@ const usePatchSpecs = (shared: boolean, mode: DocMode) => {
     patched = patched.concat(patchEdgelessClipboard());
     patched = patched.concat(patchParseDocUrlExtension(framework));
     patched = patched.concat(patchQuickSearchService(framework));
+    patched = patched.concat(patchEmbedLinkedDocBlockConfig(framework));
     if (shared) {
       patched = patched.concat(patchForSharedPage());
     }
