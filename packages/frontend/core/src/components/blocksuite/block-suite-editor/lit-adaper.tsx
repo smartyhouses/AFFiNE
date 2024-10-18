@@ -3,9 +3,10 @@ import {
   useConfirmModal,
   useLitPortalFactory,
 } from '@affine/component';
-import { useJournalInfoHelper } from '@affine/core/components/hooks/use-journal';
+import { ServerConfigService } from '@affine/core/modules/cloud';
 import { EditorService } from '@affine/core/modules/editor';
 import { EditorSettingService } from '@affine/core/modules/editor-settting';
+import { JournalService } from '@affine/core/modules/journal';
 import { toURLSearchParams } from '@affine/core/modules/navigation';
 import { PeekViewService } from '@affine/core/modules/peek-view/services/peek-view';
 import type { DocMode } from '@blocksuite/affine/blocks';
@@ -34,11 +35,11 @@ import React, {
   useRef,
 } from 'react';
 
-import { PagePropertiesTable } from '../../affine/page-properties';
 import {
   AffinePageReference,
   AffineSharedPageReference,
 } from '../../affine/reference-link';
+import { DocPropertiesTable } from '../../doc-properties';
 import { BiDirectionalLinkPanel } from './bi-directional-link-panel';
 import { BlocksuiteEditorJournalDocTitle } from './journal-doc-title';
 import {
@@ -86,6 +87,7 @@ const usePatchSpecs = (shared: boolean, mode: DocMode) => {
     editorService,
     workspaceService,
     featureFlagService,
+    serverConfigService,
   } = useServices({
     PeekViewService,
     DocService,
@@ -93,8 +95,12 @@ const usePatchSpecs = (shared: boolean, mode: DocMode) => {
     WorkspaceService,
     EditorService,
     FeatureFlagService,
+    ServerConfigService,
   });
   const framework = useFramework();
+  const serverFeatures = useLiveData(
+    serverConfigService.serverConfig.features$
+  );
   const referenceRenderer: ReferenceReactRenderer = useMemo(() => {
     return function customReference(reference) {
       const data = reference.delta.attributes?.reference;
@@ -120,11 +126,17 @@ const usePatchSpecs = (shared: boolean, mode: DocMode) => {
   }, [workspaceService]);
 
   const specs = useMemo(() => {
-    const enableAI = featureFlagService.flags.enable_ai.value;
+    const enableAI =
+      serverFeatures?.copilot && featureFlagService.flags.enable_ai.value;
     return mode === 'edgeless'
-      ? createEdgelessModeSpecs(framework, enableAI)
-      : createPageModeSpecs(framework, enableAI);
-  }, [featureFlagService, mode, framework]);
+      ? createEdgelessModeSpecs(framework, !!enableAI)
+      : createPageModeSpecs(framework, !!enableAI);
+  }, [
+    serverFeatures?.copilot,
+    featureFlagService.flags.enable_ai.value,
+    mode,
+    framework,
+  ]);
 
   const confirmModal = useConfirmModal();
   const patchedSpecs = useMemo(() => {
@@ -184,7 +196,8 @@ export const BlocksuiteDocEditor = forwardRef<
 ) {
   const titleRef = useRef<DocTitle | null>(null);
   const docRef = useRef<PageEditor | null>(null);
-  const { isJournal } = useJournalInfoHelper(page.id);
+  const journalService = useService(JournalService);
+  const isJournal = !!useLiveData(journalService.journalDate$(page.id));
 
   const editorSettingService = useService(EditorSettingService);
 
@@ -232,7 +245,7 @@ export const BlocksuiteDocEditor = forwardRef<
         ) : (
           <BlocksuiteEditorJournalDocTitle page={page} />
         )}
-        {!shared ? <PagePropertiesTable docId={page.id} /> : null}
+        {!shared ? <DocPropertiesTable /> : null}
         <adapted.DocEditor
           className={styles.docContainer}
           ref={onDocRef}

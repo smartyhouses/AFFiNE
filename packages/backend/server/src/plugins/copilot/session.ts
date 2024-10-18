@@ -149,7 +149,17 @@ export class ChatSession implements AsyncDisposable {
         normalizedParams,
         this.config.sessionId
       );
-      finished[0].attachments = firstMessage.attachments;
+
+      // attachments should be combined with the first user message
+      const firstUserMessage =
+        finished.find(m => m.role === 'user') || finished[0];
+      firstUserMessage.attachments = [
+        finished[0].attachments || [],
+        firstMessage.attachments || [],
+      ]
+        .flat()
+        .filter(v => !!v?.trim());
+
       return finished;
     }
 
@@ -549,6 +559,7 @@ export class ChatSessionService {
       this.logger.error(`Prompt not found: ${options.promptName}`);
       throw new CopilotPromptNotFound({ name: options.promptName });
     }
+
     return await this.setSession({
       ...options,
       sessionId,
