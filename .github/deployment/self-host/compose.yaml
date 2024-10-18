@@ -1,12 +1,13 @@
 services:
   affine:
-    image: ghcr.io/toeverything/affine-graphql:stable
+    image: dockerhub.timeweb.cloud/ghcr.io/toeverything/affine-graphql:stable
     container_name: affine_selfhosted
+    build_context: https://github.com/smartyhouses/AFFiNE/edit/canary/.github/deployment/self-host/compose.yaml#canary
     command:
       ['sh', '-c', 'node ./scripts/self-host-predeploy && node ./dist/index.js']
-    ports:
-      - '3010:3010'
-      - '5555:5555'
+    #ports:
+     # - '3010:3010'
+     # - '5555:5555'
     depends_on:
       redis:
         condition: service_healthy
@@ -32,7 +33,7 @@ services:
       # Uncomment next line if you wish to quit telemetry.
       # - TELEMETRY_ENABLE=false
   redis:
-    image: redis
+    image: dockerhub.timeweb.cloud/redis
     container_name: affine_redis
     restart: unless-stopped
     volumes:
@@ -43,7 +44,7 @@ services:
       timeout: 5s
       retries: 5
   postgres:
-    image: postgres:16
+    image: dockerhub.timeweb.cloud/postgres:16
     container_name: affine_postgres
     restart: unless-stopped
     volumes:
