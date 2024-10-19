@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim
+FROM dockerhub.timeweb.cloud/node:20-bookworm-slim
 
 COPY ./packages/backend/server /app
 COPY ./packages/frontend/apps/web/dist /app/static
