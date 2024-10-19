@@ -1,6 +1,6 @@
 services:
   affine:
-    image: dockerhub.timeweb.cloud/ghcr.io/toeverything/affine-graphql:stable
+    image: dockerhub.timeweb.cloud/toeverything/affine-graphql:stable
     container_name: affine_selfhosted
     #build_context: https://github.com/smartyhouses/AFFiNE/edit/canary/.github/deployment/self-host/compose.yaml#canary
     command:
