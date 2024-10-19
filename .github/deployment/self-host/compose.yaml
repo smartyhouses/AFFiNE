@@ -2,7 +2,7 @@ services:
   affine:
     image: dockerhub.timeweb.cloud/ghcr.io/toeverything/affine-graphql:stable
     container_name: affine_selfhosted
-    build_context: https://github.com/smartyhouses/AFFiNE/edit/canary/.github/deployment/self-host/compose.yaml#canary
+    #build_context: https://github.com/smartyhouses/AFFiNE/edit/canary/.github/deployment/self-host/compose.yaml#canary
     command:
       ['sh', '-c', 'node ./scripts/self-host-predeploy && node ./dist/index.js']
     #ports:
