@@ -1,5 +1,6 @@
 import { IconButton } from '@affine/component';
 import { useI18n } from '@affine/i18n';
+import { track } from '@affine/track';
 import { SidebarIcon } from '@blocksuite/icons/rc';
 import { useLiveData, useService } from '@toeverything/infra';
 import { useCallback, useRef } from 'react';
@@ -16,19 +17,33 @@ export const SidebarSwitch = ({
 }) => {
   const appSidebarService = useService(AppSidebarService).sidebar;
   const open = useLiveData(appSidebarService.open$);
+  const preventHovering = useLiveData(appSidebarService.preventHovering$);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const switchRef = useRef<HTMLDivElement>(null);
-
   const handleMouseEnter = useCallback(() => {
+    if (preventHovering || open) {
+      return;
+    }
     appSidebarService.setHovering(true);
-  }, [appSidebarService]);
+  }, [appSidebarService, open, preventHovering]);
 
   const handleClickSwitch = useCallback(() => {
-    appSidebarService.toggleSidebar();
-  }, [appSidebarService]);
+    track.$.navigationPanel.$.toggle({
+      type: open ? 'collapse' : 'expand',
+    });
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (open) {
+      appSidebarService.setHovering(false);
+      timeoutRef.current = setTimeout(() => {
+        appSidebarService.setPreventHovering(false);
+      }, 500);
+    }
 
-  const handleMouseLeave = useCallback(() => {
-    appSidebarService.setHovering(false);
-  }, [appSidebarService]);
+    appSidebarService.setPreventHovering(true);
+    appSidebarService.toggleSidebar();
+  }, [appSidebarService, open]);
 
   const t = useI18n();
   const tooltipContent = open
@@ -42,12 +57,14 @@ export const SidebarSwitch = ({
       className={styles.sidebarSwitchClip}
       data-testid={`app-sidebar-arrow-button-${open ? 'collapse' : 'expand'}`}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <IconButton
         tooltip={tooltipContent}
         tooltipShortcut={['$mod', '/']}
-        tooltipOptions={{ side: open ? 'bottom' : 'right' }}
+        tooltipOptions={{
+          side: open ? 'bottom' : 'right',
+          rootOptions: { delayDuration: 700 },
+        }}
         className={className}
         size="24"
         style={{

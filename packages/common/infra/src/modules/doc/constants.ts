@@ -15,10 +15,22 @@ export const BUILT_IN_CUSTOM_PROPERTY_TYPE = [
     id: 'docPrimaryMode',
     type: 'docPrimaryMode',
     show: 'always-hide',
+    index: 'a0000002',
   },
   {
     id: 'journal',
     type: 'journal',
     show: 'always-hide',
+    index: 'a0000003',
+  },
+  {
+    id: 'createdAt',
+    type: 'createdAt',
+    index: 'a0000004',
+  },
+  {
+    id: 'updatedAt',
+    type: 'updatedAt',
+    index: 'a0000005',
   },
 ] as DocCustomPropertyInfo[];
