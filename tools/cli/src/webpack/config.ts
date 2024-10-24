@@ -353,7 +353,7 @@ export const createConfiguration: (
         overlay: process.env.DISABLE_DEV_OVERLAY === 'true' ? false : undefined,
       },
       historyApiFallback: true,
-      allowedHosts: '*',
+      allowedHosts: 'all',
       //disableHostCheck: true,
       static: [
         {
